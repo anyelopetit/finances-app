@@ -8,6 +8,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { ProductService } from '../demo/service/ProductService';
 import { LayoutContext } from '../layout/context/layoutcontext';
 import Link from 'next/link';
+import { AccountService } from './service/AccountService';
 const lineData = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
@@ -30,6 +31,10 @@ const lineData = {
     ]
 };
 
+const accounts = () => {
+    fetch
+}
+
 const Dashboard = () => {
     const [products, setProducts] = useState(null);
     const menu1 = useRef(null);
@@ -37,6 +42,7 @@ const Dashboard = () => {
     const [lineOptions, setLineOptions] = useState(null);
     const { layoutConfig } = useContext(LayoutContext);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
+    const [accounts, setAccounts] = useState([]);
 
     const applyLightTheme = () => {
         const lineOptions = {
@@ -115,12 +121,24 @@ const Dashboard = () => {
         }
     }, [layoutConfig.colorScheme]);
 
+    useEffect(() => {
+        const accountService = new AccountService();
+        accountService.getAccounts().then((accounts) => {
+            setAccounts(accounts);
+        });
+    }, []);
+
     const formatCurrency = (value) => {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     };
 
     return (
         <div className="grid">
+            {
+                accounts.forEach((account) => {
+                    <AccountSummary account={account} />;
+                })
+            }
             <div className="col-12 lg:col-6 xl:col-3">
                 <div className="card mb-0">
                     <div className="flex justify-content-between mb-3">
