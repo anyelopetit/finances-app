@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { ProductService } from '../demo/service/ProductService';
-import { AccountService } from './service/AccountService';
+import { AccountService } from '../demo/service/AccountService';
 import Summary from './components/Summary';
 import MiniTable from './components/MiniTable';
 import PercentTable from './components/PercentTable';
