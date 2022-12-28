@@ -14,6 +14,5 @@ export class AccountService {
     };
     return fetch(this.contextPath + '/accounts', { headers: headers })
       .then((res) => res.json())
-      .then((d) => d.data);
   }
 }
