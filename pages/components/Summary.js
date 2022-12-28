@@ -4,7 +4,7 @@ const icons = ['shopping-cart', 'map-marker', 'inbox', 'comment']
 const colors = ['blue', 'orange', 'cyan', 'purple']
 
 const formatCurrency = (value) => {
-  return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  return value?.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 };
 
 const getRandom = (list) => {
